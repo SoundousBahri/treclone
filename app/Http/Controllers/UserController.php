@@ -17,6 +17,8 @@ class UserController extends Controller
             'password' => request('password')
         ];
 
+        var_dump($credentials);
+
         if (Auth::attempt($credentials)) {
             $success['token'] = Auth::user()->createToken('MyApp')->accessToken;
             $success['name'] = Auth::user()->name;

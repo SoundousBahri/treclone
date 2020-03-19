@@ -2,10 +2,9 @@
 
 namespace Tests\Unit;
 
+use App\User;
 use Illuminate\Support\Str;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class UserAPITest extends TestCase
 {
@@ -24,13 +23,21 @@ class UserAPITest extends TestCase
 
     public function testUserLogin()
     {
+        $email= Str::random(10) . '@demo.com';
+        $password= '12345';
+        User::create([
+            'name' => 'Demo User',
+            'email' => $email,
+            'password' => bcrypt($password),
+        ]);
+
         $response = $this->json('POST', '/api/login', [
-            'email' => 'demo@demo.com',
-            'password' => 'secret'
+            'email' => $email,
+            'password' => $password
         ]);
 
         $response->assertStatus(200)->assertJsonStructure([
-            'success' => ['token']
+            'success' => ['token','name']
         ]);
     }
 }
