@@ -1,11 +1,12 @@
-# ![Treclon]()
+# Treclon
 
 > ### Example Laravel and vue js application.
 
 
 ----------
+This is a clone for trello app (hens Treclon), it is a SPA built with Vue Js and Laravel. It contains simple crud operations accessed via api requests.
+You can create/edit tasks and move them from a category to another.
 
-# Getting started
 
 ## Installation
 
